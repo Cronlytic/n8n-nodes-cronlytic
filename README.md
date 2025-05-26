@@ -1,5 +1,11 @@
 # n8n-nodes-cronlytic
 
+> 🚨 Warning: This n8n node is **experimental** and may change. Not ready for production use.
+
+> Tested locally only, but has to be running on a server to fully test webhook generation functionality
+
+> For production use, create webhook node, paste it inside cronlytic dashboard or use API documentation untill this node fully tested
+
 An n8n community node for integrating with [Cronlytic](https://cronlytic.com), providing advanced cron scheduling capabilities for n8n workflows through webhook triggers.
 
 ![n8n](https://img.shields.io/badge/n8n-community%20node-FF6D5A)
