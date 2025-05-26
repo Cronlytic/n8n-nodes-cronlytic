@@ -1,46 +1,208 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-cronlytic
 
-# n8n-nodes-starter
+An n8n community node for integrating with [Cronlytic](https://cronlytic.com), providing advanced cron scheduling capabilities for n8n workflows through webhook triggers.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+![n8n](https://img.shields.io/badge/n8n-community%20node-FF6D5A)
+![npm](https://img.shields.io/npm/v/n8n-nodes-cronlytic)
+![License](https://img.shields.io/npm/l/n8n-nodes-cronlytic)
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+## What is Cronlytic?
 
-## Prerequisites
+Cronlytic is an advanced cron scheduling service that provides:
+- Robust, reliable cron job execution
+- Detailed execution logs and monitoring
+- Advanced scheduling features beyond basic cron
+- API-based job management
+- Webhook-based triggers for external systems
 
-You need the following installed on your development machine:
+## Features
 
-* [git](https://git-scm.com/downloads)
-* Node.js and pnpm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+This n8n node provides:
 
-## Using this starter
+- **Cronlytic Trigger**: Create scheduled workflows using Cronlytic's advanced cron scheduler
+- **Webhook Integration**: Automatically sets up webhooks between Cronlytic and n8n
+- **Advanced Scheduling**: Support for complex cron expressions
+- **Automatic Job Management**: Creates, updates, and deletes Cronlytic jobs as needed
+- **Custom Headers & Payloads**: Configure webhook requests with custom data
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+## Installation
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm lint` to check for errors or `npm lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+### Community Nodes (Recommended)
 
-## More information
+1. Go to **Settings > Community Nodes** in your n8n instance
+2. Click **Install**
+3. Enter `n8n-nodes-cronlytic`
+4. Click **Install**
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+### Manual Installation
+
+```bash
+# In your n8n installation directory
+npm install n8n-nodes-cronlytic
+
+# Restart your n8n instance
+```
+
+## Setup
+
+### 1. Get Cronlytic API Credentials
+
+1. Sign up for a [Cronlytic account](https://cronlytic.com)
+2. Navigate to **API Keys** in your dashboard
+3. Click **Generate New API Key**
+4. Copy your **API Key** and **User ID**
+
+### 2. Configure Credentials in n8n
+
+1. In n8n, go to **Credentials**
+2. Click **Create New Credential**
+3. Search for and select **Cronlytic API**
+4. Enter your **API Key** and **User ID**
+5. Test the connection and save
+
+## Usage
+
+### Cronlytic Trigger Node
+
+The Cronlytic Trigger node creates scheduled jobs on Cronlytic that trigger your n8n workflows via webhooks.
+
+#### Configuration Options:
+
+- **Job Name**: Unique identifier for the cron job (alphanumeric, hyphens, underscores only)
+- **Cron Expression**: 5-field cron expression (minute hour day month day-of-week)
+- **Webhook Body**: Optional JSON payload to send with the webhook
+- **Additional Headers**: Custom headers for webhook requests
+
+#### Example Cron Expressions:
+
+- `*/5 * * * *` - Every 5 minutes
+- `0 9 * * 1-5` - 9 AM on weekdays
+- `0 0 1 * *` - First day of every month
+- `30 14 * * 0` - 2:30 PM every Sunday
+
+### Example Workflow
+
+1. Add a **Cronlytic Trigger** node to your workflow
+2. Configure credentials
+3. Set job name: `daily-report-generator`
+4. Set cron expression: `0 9 * * *` (daily at 9 AM)
+5. Add webhook body: `{"source": "cronlytic", "type": "daily_report"}`
+6. Connect to your processing nodes
+7. Activate the workflow
+
+When activated, this creates a job on Cronlytic that will trigger your workflow daily at 9 AM.
+
+## Advanced Features
+
+### Custom Webhook Payloads
+
+Include dynamic data in your webhook triggers:
+
+```json
+{
+  "trigger_time": "{{timestamp}}",
+  "source": "cronlytic",
+  "workflow_id": "daily-backup",
+  "environment": "production"
+}
+```
+
+### Error Handling
+
+The node includes built-in error handling:
+- API connection retries with exponential backoff
+- Automatic lambda warming for reliable execution
+- Detailed error messages for troubleshooting
+
+### Job Management
+
+Jobs are automatically managed by n8n:
+- **Created** when workflow is activated
+- **Updated** when node configuration changes
+- **Deleted** when workflow is deactivated or node is removed
+
+## API Reference
+
+This node uses the [Cronlytic Programmatic API](https://api.cronlytic.com/prog/). For advanced usage, refer to the complete API documentation.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Authentication Failed**
+   - Verify API Key and User ID are correct
+   - Check that credentials are properly configured in n8n
+
+2. **Invalid Cron Expression**
+   - Use 5-field format: `minute hour day month day-of-week`
+   - Test expressions at [crontab.guru](https://crontab.guru/)
+
+3. **Webhook Not Triggering**
+   - Ensure workflow is activated
+   - Check Cronlytic dashboard for job status and logs
+   - Verify webhook URL is accessible
+
+4. **Job Limit Exceeded**
+   - Check your Cronlytic plan limits
+   - Delete unused jobs or upgrade your plan
+
+### Support
+
+- **Node Issues**: [GitHub Issues](https://github.com/salehalsaihati/n8n-nodes-cronlytic/issues)
+- **Cronlytic API**: support@cronlytic.com
+- **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
+
+## Development
+
+### Requirements
+
+- Node.js ≥ 20.15
+- n8n development environment
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/salehalsaihati/n8n-nodes-cronlytic.git
+cd n8n-nodes-cronlytic
+
+# Install dependencies
+npm install
+
+# Build the node
+npm run build
+
+# Link for local testing
+npm link
+n8n start
+```
+
+### Scripts
+
+- `npm run build` - Build the node
+- `npm run dev` - Build in watch mode
+- `npm run lint` - Run linter
+- `npm run format` - Format code
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Run linting and formatting
+6. Submit a pull request
 
 ## License
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+[MIT](LICENSE.md)
+
+## Author
+
+**Saleh Alsaihati**
+- GitHub: [@Cronlytic](https://github.com/Cronlytic/n8n-nodes-cronlytic)
+- Email: saleh@cronlytic.com
+
+---
+
+*Built with ❤️ for the n8n community*

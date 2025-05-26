@@ -1,19 +1,25 @@
 {
-  "name": "n8n-nodes-<...>",
-  "version": "0.1.0",
-  "description": "",
+  "name": "n8n-nodes-cronlytic",
+  "version": "0.0.1-beta",
+  "description": "n8n community node for Cronlytic advanced cron scheduling",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "n8n",
+    "cronlytic",
+    "cron",
+    "scheduler",
+    "trigger",
+    "webhook"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/salehalsaihati/n8n-nodes-cronlytic",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Saleh Alsaihati",
+    "email": "saleh@example.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/salehalsaihati/n8n-nodes-cronlytic.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -33,15 +39,14 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/CronlyticApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/CronlyticTrigger/CronlyticTrigger.node.js"
     ]
   },
   "devDependencies": {
+    "@types/node": "^22.15.21",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",

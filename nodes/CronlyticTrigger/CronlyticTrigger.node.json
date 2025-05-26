@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.cronlyticTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Utility", "Development", "Trigger"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://www.cronlytic.com/api-documentation"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://cronlytic.com"
+			}
+		]
+	}
+}
