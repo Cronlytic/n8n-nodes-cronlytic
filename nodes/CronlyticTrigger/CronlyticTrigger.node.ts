@@ -36,7 +36,7 @@ export class CronlyticTrigger implements INodeType {
 			{
 				name: 'default',
 				httpMethod: 'POST',
-				responseMode: 'onReceived',
+				responseMode: 'lastNode',
 				path: 'webhook',
 			},
 		],
@@ -290,7 +290,7 @@ export class CronlyticTrigger implements INodeType {
 		const headers = this.getHeaderData();
 		const query = this.getQueryData();
 
-		// Create output data
+		// Create output data for the workflow
 		const outputData: INodeExecutionData[] = [
 			{
 				json: {
@@ -299,11 +299,12 @@ export class CronlyticTrigger implements INodeType {
 					body: bodyData,
 					timestamp: new Date().toISOString(),
 					source: 'cronlytic',
+					cronlytic_trigger: true,
 				},
 			},
 		];
 
-		// Return successful response to Cronlytic
+		// Return response that keeps the trigger active
 		return {
 			workflowData: [outputData],
 		};

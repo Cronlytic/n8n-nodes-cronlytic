@@ -141,7 +141,6 @@ This node uses the [Cronlytic Programmatic API](https://api.cronlytic.com/prog/)
 
 2. **Invalid Cron Expression**
    - Use 5-field format: `minute hour day month day-of-week`
-   - Test expressions at [crontab.guru](https://crontab.guru/)
 
 3. **Webhook Not Triggering**
    - Ensure workflow is activated
@@ -154,8 +153,8 @@ This node uses the [Cronlytic Programmatic API](https://api.cronlytic.com/prog/)
 
 ### Support
 
-- **Node Issues**: [GitHub Issues](https://github.com/salehalsaihati/n8n-nodes-cronlytic/issues)
-- **Cronlytic API**: support@cronlytic.com
+- **Node Issues**: [GitHub Issues](https://github.com/Cronlytic/n8n-nodes-cronlytic)
+- **Cronlytic API**: saleh@cronlytic.com
 - **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
 
 ## Development
@@ -169,7 +168,7 @@ This node uses the [Cronlytic Programmatic API](https://api.cronlytic.com/prog/)
 
 ```bash
 # Clone the repository
-git clone https://github.com/salehalsaihati/n8n-nodes-cronlytic.git
+git clone https://github.com/Cronlytic/n8n-nodes-cronlytic.git
 cd n8n-nodes-cronlytic
 
 # Install dependencies
