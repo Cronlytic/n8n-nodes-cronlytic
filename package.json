@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-cronlytic",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "n8n community node for Cronlytic advanced cron scheduling",
   "keywords": [
     "n8n-community-node-package",
