@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-cronlytic",
-  "version": "0.0.2-beta",
+  "version": "0.1.0",
   "description": "n8n community node for Cronlytic advanced cron scheduling",
   "keywords": [
     "n8n-community-node-package",
@@ -12,14 +12,14 @@
     "webhook"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/salehalsaihati/n8n-nodes-cronlytic",
+  "homepage": "https://github.com/Cronlytic/n8n-nodes-cronlytic",
   "author": {
-    "name": "Saleh Alsaihati",
-    "email": "saleh@example.com"
+    "name": "Cronlytic",
+    "email": "saleh@cronlytic.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salehalsaihati/n8n-nodes-cronlytic.git"
+    "url": "git+https://github.com/Cronlytic/n8n-nodes-cronlytic.git"
   },
   "engines": {
     "node": ">=20.15"

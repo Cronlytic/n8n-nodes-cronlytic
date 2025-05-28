@@ -19,7 +19,7 @@ export class CronlyticTrigger implements INodeType {
 		icon: 'fa:clock',
 		group: ['trigger'],
 		version: 1,
-		subtitle: '={{$parameter["cronExpression"]}}',
+		subtitle: '={{$parameter["jobName"]}}',
 		description: 'Trigger workflows using Cronlytic advanced cron scheduling',
 		defaults: {
 			name: 'Cronlytic Trigger',
@@ -36,7 +36,7 @@ export class CronlyticTrigger implements INodeType {
 			{
 				name: 'default',
 				httpMethod: 'POST',
-				responseMode: 'lastNode',
+				responseMode: 'onReceived',
 				path: 'webhook',
 			},
 		],
@@ -304,7 +304,7 @@ export class CronlyticTrigger implements INodeType {
 			},
 		];
 
-		// Return response that keeps the trigger active
+		// Return workflow data - n8n will respond immediately with 200 OK
 		return {
 			workflowData: [outputData],
 		};

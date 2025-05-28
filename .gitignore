@@ -7,4 +7,8 @@ npm-debug.log*
 yarn.lock
 .vscode/launch.json
 temp.md
-AWS-Deployment/
+AWS-Deployment/.terraform.lock.hcl
+AWS-Deployment/terraform.tfstate
+AWS-Deployment/terraform.tfstate.backup
+AWS-Deployment/.terraform
+AWS-Deployment/terraform.tfvars
