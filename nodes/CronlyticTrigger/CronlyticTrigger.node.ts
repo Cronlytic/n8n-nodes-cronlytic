@@ -16,7 +16,7 @@ export class CronlyticTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Cronlytic Trigger',
 		name: 'cronlyticTrigger',
-		icon: 'fa:clock',
+		icon: 'file:cronlytic.svg',
 		group: ['trigger'],
 		version: 1,
 		subtitle: '={{$parameter["jobName"]}}',
